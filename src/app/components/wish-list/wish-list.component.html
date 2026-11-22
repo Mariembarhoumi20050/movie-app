@@ -1,0 +1,33 @@
+<div class="wishlist-page">
+  <div class="wishlist-header">
+    <h1><fa-icon [icon]="faHeart"></fa-icon> My Wishlist</h1>
+  </div>
+
+  <div class="container" *ngIf="movieService.wishList().length > 0; else empty">
+    <div
+      class="movie-card"
+      *ngFor="let movie of movieService.wishList()"
+    >
+      <div class="movie-poster" (click)="goToDetail(movie)">
+        <img
+          [src]="imageBase + movie.poster_path"
+          [alt]="movie.title"
+          onerror="this.src='assets/no-image.png'"
+        />
+      </div>
+      <div class="movie-detail">
+        <h2 (click)="goToDetail(movie)">{{ movie.title }}</h2>
+        <button class="remove-btn" (click)="remove(movie)">
+          <fa-icon [icon]="faTrash"></fa-icon>
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #empty>
+    <div class="empty-state">
+      <p>Your wishlist is empty. Add some movies! 🎬</p>
+    </div>
+  </ng-template>
+</div>

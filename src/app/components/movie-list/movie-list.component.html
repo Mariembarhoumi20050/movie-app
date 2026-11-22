@@ -1,0 +1,20 @@
+<app-search-bar (searchEvent)="onSearch($event)"></app-search-bar>
+
+<div class="container">
+  <div
+    class="movie-card"
+    *ngFor="let movie of filteredMovies"
+    (click)="goToDetail(movie)"
+  >
+    <div class="movie-poster">
+      <img
+        [src]="imageBase + movie.poster_path"
+        [alt]="movie.title"
+        onerror="this.src='assets/no-image.png'"
+      />
+    </div>
+    <div class="movie-detail">
+      <h2>{{ movie.title }}</h2>
+    </div>
+  </div>
+</div>

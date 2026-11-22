@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="search-container">
+    <label>Search</label>
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onInputChange()"
+      (keyup.enter)="onSearch()"
+      placeholder="Search a movie..."
+    />
+    <fa-icon [icon]="faMagnifyingGlass" (click)="onSearch()"></fa-icon>
+  </div>
+</div>

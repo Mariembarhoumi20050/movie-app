@@ -1,0 +1,33 @@
+<div class="detail-container" *ngIf="movie">
+  <div class="poster-container">
+    <img [src]="imageBase + movie.poster_path" [alt]="movie.title" />
+  </div>
+
+  <div class="info-container">
+    <div class="title-row">
+      <h1>{{ movie.original_title }}</h1>
+      <button class="wishlist-btn" (click)="toggleWishlist()">
+        <fa-icon [icon]="isWishlisted() ? faHeart : faHeartRegular"></fa-icon>
+        {{ isWishlisted() ? 'Remove from Wishlist' : 'Add to Wishlist' }}
+      </button>
+    </div>
+
+    <div class="meta">
+      <span class="badge">{{ movie.original_language | uppercase }}</span>
+      <span class="badge">{{ movie.release_date | slice:0:4 }}</span>
+      <span class="badge rating">⭐ {{ movie.vote_average | number:'1.1-1' }}</span>
+      <span class="votes">{{ movie.vote_count }} votes</span>
+    </div>
+
+    <div class="overview">
+      <h3>Overview</h3>
+      <p>{{ movie.overview }}</p>
+    </div>
+
+    <button class="back-btn" (click)="goBack()">← Back to movies</button>
+  </div>
+</div>
+
+<div *ngIf="!movie" class="loading">
+  <p>Loading movie details...</p>
+</div>
